@@ -1,4 +1,4 @@
-<?php $title = 'Mon blog'; ?>
+<<?php $title = 'Mon blog'; ?>
 
 <?php ob_start(); ?>
 <h1>Mon super blog !</h1>
@@ -6,8 +6,8 @@
 <a href="view/connection/connect.php">Connexion</a>
 <div><img alt="writer" src="http://www.lorenzomarone.net/wp-content/uploads/2014/12/scrittore-981x540.jpg"></div>
 
-<?php
-while ($data = $posts->fetch())
+<<?php
+foreach ($post as $data) 
 {
 ?>
     <div class="news">
@@ -24,7 +24,6 @@ while ($data = $posts->fetch())
     </div>
 <?php
 }
-$posts->closeCursor();
 ?>
 <?php $content = ob_get_clean(); ?>
 
