@@ -1,21 +1,7 @@
 <?php 
 
-include('lib/DbConnect.php');
-
 Class PostModel extends DbConnect
 {
-    private $db;
-    
-    /*public function __construct()
-    {
-        $this->db = (new DbConnect())->dbConnect();
-    }*/
-
-    /*
-    public function __construct(PDO $db)
-    {
-        $this->db = $db;
-    }*/
 
     public function getPosts()
     {
@@ -26,31 +12,57 @@ Class PostModel extends DbConnect
         return $data;
     }
 
-    public function getPost($postId)
+    public function getPostComments($postId)
     {
-        $req = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
-        $req->execute(array($postId->postId()));
-        $post = $req->fetch();
+        $comments = $this->dbConnect()->prepare('SELECT id, author, comment, post_id, reported_comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = :postId ORDER BY comment_date DESC');
 
+
+        $comments->bindValue(':postId', (int) $postId);
+        $comments->execute();
+
+        $data = $comments->fetchAll();
+
+        return $data;
+    }
+
+    public function getPost($id)
+    {
+        $req = $this->dbConnect()->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = :id');
+
+        $req->bindValue(':id', (int) $id);
+        $req->execute();
+
+        $post = $req->fetch();
+        
         return $post;
     }
 
-    public function addPost(Posts $post)
+    public function addPost($title, $content)
     {
-        $addPost = $this->db->prepare('INSERT INTO posts(title, content, creation_date) VALUES(?, ?, NOW())');
-        $affectedLines = $addPost->execute(array($post->title(), $post->content()));
 
-        return $affectedLines;
+        $addPost = $this->dbConnect()->prepare('INSERT INTO posts(title, content, creation_date) VALUES(:title, :content, NOW())');
+
+        $addPost->bindValue(':title', $title);
+        $addPost->bindValue(':content', $content);
+
+        $affectedLines = $addPost->execute();
+
+
+        //$addPost = $this->dbConnect()->prepare('INSERT INTO posts(title, content, creation_date) VALUES(?, ?, NOW())');
+
+        //$affectedLines = $addPost->execute(array($post->title(), $post->content()));
+
+        //return $affectedLines;
     }
     
-    public function editPost(Post $post)
+    public function editPost($title, $content, $id)
     {
         
-        $editPost = $this->db->prepare('UPDATE posts SET title = :title, content = :content WHERE id = :id');
+        $editPost = $this->dbConnect()->prepare('UPDATE posts SET title = :title, content = :content WHERE id = :id');
         $affectedLines = $editPost->execute(array(
-                        ':title' => $post->title(),
-                        ':content' => $post->content(),
-                        ':id' => $post->id()
+                        ':title' => $title,
+                        ':content' => $content,
+                        ':id' => $id
                     ));
 
         return $affectedLines;
@@ -59,8 +71,8 @@ Class PostModel extends DbConnect
     function removePost($id)
     {
         //faire une requete delete (TRUE AND FALSE Pour les commentaires signalés et nouveau champs dans la base commentaires):
-        $removePost = $this->db->prepare('DELETE FROM posts WHERE id = :id');
-        $affectedLines = $removePost->execute(array( ':id' => $id->id()));
+        $removePost = $this->dbConnect()->prepare('DELETE FROM posts WHERE id = :id');
+        $affectedLines = $removePost->execute(array( ':id' => $id));
     }
 
 }
