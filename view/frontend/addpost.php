@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<title>Admin WISIWYG</title>
-	<link href="../public/css/stylesheet.css" rel="stylesheet" />
-    <script src="tinymce/tinymce.js" language="javascript" type="text/javascript">
+    <meta charset="utf-8" />
+    <title>Admin WISIWYG</title>
+    <link href="../public/css/stylesheet.css" rel="stylesheet" />
+    <script src="../../../tinymce/tinymce.js" language="javascript" type="text/javascript">
     </script>
     <script language="javascript" type="text/javascript">
         tinyMCE.init({
-        mode : "textareas"
+        mode : "textareas",
+        style_format_autohide :true,
+        style_format_merge : true
         });
     </script>
 </head>
 <body>
-	<h1>Page de l'Admin</h1>
-	<a id="logout" href="view/connection/deconnexion.php">Deconnexion</a>
-	<!--<?php $addedpost ?> -->
+    <h1>Page de l'Admin< 2s sadsadsa</h1>
+    <a id="logout" href="../connection/deconnexion.php">Deconnexion</a>
+    <!--<?php $addedpost ?> -->
 
 <h1>Ma Page Admin !</h1>
 <p> Ajouter un nouveau post :</p>
 
-<em><a href="index.php?action=all"> voir tous les post</a></em>
+<em><a href="../../index.php?action=all"> voir tous les post</a></em>
 <br />
 <br />
 <form name="formulaire" id="formulaire" action="index.php?action=addPost" method="post">
@@ -36,7 +38,5 @@
  </form>
 
 
-	</body>
+    </body>\
 </html>
-
-<!--requete sql qui va recuperer l'entier des chapitre et faire un for each pour parcourir mon tableau

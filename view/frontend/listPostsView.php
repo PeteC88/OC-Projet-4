@@ -6,7 +6,7 @@
 <a href="view/connection/connect.php">Connexion</a>
 <div><img alt="writer" src="http://www.lorenzomarone.net/wp-content/uploads/2014/12/scrittore-981x540.jpg"></div>
 
-<<?php
+<?php
 foreach ($post as $data) 
 {
 ?>

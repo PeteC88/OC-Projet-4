@@ -3,11 +3,13 @@
 class PostController
 {
 	private $PostModel;
+	//private $CommentModel;
 
 	public function __construct()
 	{
 		$this->PostModel = new PostModel();
 	}
+
 
 	function listPosts()
 	{
@@ -19,13 +21,14 @@ class PostController
 	function listAll()
 	{
 		$all = $this->PostModel->getPosts();
+		
     	require('view/frontend/admin.php');
 	}
 
 	function post()
-	{
-    	$post = $this->getPost($_GET['id']);
-    	$comments = $this->getComments($_GET['id']);
+	{	
+    	$post = $this->PostModel->getPost($_GET['id']);
+    	$comments = $this->PostModel->getPostComments($_GET['id']);
 
     	require('view/frontend/postView.php');
 	}
@@ -38,11 +41,11 @@ class PostController
 	    } 
 	    else
 	    {
-	        $titre = $_POST['titre'];
-	        $texte = $_POST['texte'];
-	        
+	        $titre = htmlspecialchars($_POST['titre']);
+	        $texte = ($_POST['texte']);
+	        //cambiare con testo inglese in $_POST['titre'] e $_POST['texte']
 
-	        $affectedLines = $this->addPost($titre, $texte);
+	        $affectedLines = $this->PostModel->addPost($titre, $texte);
 
 	        if ($affectedLines === false) {
 	            //Erreur gérée. Elle sera remontée jusqu'au bloc try du routeur !
@@ -61,7 +64,7 @@ class PostController
 	    if(empty($_POST))
 	    {
 	        //creer les variables que je vais afficher dans le formulaire
-	        $post = $this->getPost($_GET['id']);
+	        $post = $this->PostModel->getPost($_GET['id']);
 	        //test pour verifier si l'article existe ou pas.
 	        if($post)
 	        {
@@ -79,7 +82,7 @@ class PostController
 	        $id = $_POST['id'];
 	    
 
-	         $affectedLines = editPost($title, $content, $id);
+	         $affectedLines = $this->PostModel->editPost($title, $content, $id);
 
 	        if ($affectedLines === false) 
 	        {
@@ -98,7 +101,7 @@ class PostController
 
 	    $id = htmlspecialchars($_GET['id']);
 
-	    $affectedLines = $this->removePost($id);
+	    $affectedLines = $this->PostModel->removePost($id);
 
 	    if ($affectedLines === false) 
 	    {

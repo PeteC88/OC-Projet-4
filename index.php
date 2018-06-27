@@ -2,9 +2,7 @@
 <?php
 
 require('lib/autoload.php');
-//require('DbConnect.php');
 
-//$db = DbConnect::dbConnect();
 $PostController = new PostController(); 
 $CommentController = new CommentController();
 
@@ -25,6 +23,7 @@ try
             if (isset($_GET['id']) && $_GET['id'] > 0) 
             {
                 $PostController->post();
+                $CommentController->comments();
             }
             else 
             {

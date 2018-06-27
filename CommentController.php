@@ -6,12 +6,12 @@ class CommentController
 
 	public function __construct()
 	{
-		$this->PostModel = new CommentModel();
+		$this->CommentModel = new CommentModel();
 	}
 
 	function addComment($postId, $author, $comment)
 	{
-	    $affectedLines = $this->postComment($postId, $author, $comment);
+	    $affectedLines = $this->CommentModel->postComment($postId, $author, $comment);
 
 	    if ($affectedLines === false) {
 	        //Erreur gérée. Elle sera remontée jusqu'au bloc try du routeur !
@@ -33,7 +33,7 @@ class CommentController
 	    //mettre la valeur directe comme paramètre à la place de l'attribut $reportedComment
 	    //DONNER DES VALEURS AUX PARAMETRES
 	    //$commentId comme attribut pour recuperer l'id du commentaire:
-	    $this->reportComment(1, $commentId);
+	    $this->CommentModel->reportComment(1, $commentId);
 
 	    //ecrire un petit message pour dire que le commentaire a bien été signalé.
 
@@ -44,14 +44,14 @@ class CommentController
 
 	function showReportedComment()
 	{
-	    $comments = $this->getReportedComments();
+	    $comments = $this->CommentModel->getReportedComments();
 	    require('view/frontend/reportedComment.php');
 	}
 
 	function removeCommentAction()
 	{
 	    $id = htmlspecialchars(($_GET['id']));
-	    $affectedLines = $this->removeComment($id);
+	    $affectedLines = $this->CommentModel->removeComment($id);
 
 	    if ($affectedLines === false) 
 	    {

@@ -12,7 +12,7 @@
     </h3>
     
     <p>
-        <?= nl2br(htmlspecialchars($post['content'])) ?>
+        <?= nl2br($post['content']) ?>
     </p>
 </div>
 
@@ -33,7 +33,7 @@
 </form>
 
 <?php
-while ($comment = $comments->fetch())
+foreach ($comments as $comment)
 {
 ?>
     <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
@@ -49,6 +49,7 @@ while ($comment = $comments->fetch())
     <input type="hidden" name="postId" value="<?= $comment['post_id'] ?>" />
     <input type="submit" name="reportPost" value="signaler commentaire">
     </form>
+
 <?php
 }
 ?>
