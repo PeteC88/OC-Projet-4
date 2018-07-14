@@ -82,7 +82,7 @@ try
         {
                 $AdminPostController->removePostAction();  
         }
-        elseif($_GET['action'] == 'adminReportComment')
+        elseif($_GET['action'] == 'reportComment')
         //if (isset($_GET['id']) && $_GET['id'] > 0) 
         {
             $CommentController->reportCommentAction();
