@@ -1,20 +1,40 @@
-
 <?php
 
-require('lib/autoload.php');
+CONST ADMIN_VIEW_PATH = 'view/back_office/admin/';
+CONST CONNECTION_VIEW_PATH = 'view/back_office/connection/';
+CONST FRONT_OFFICE_VIEW_PATH = 'view/front_office/';
+
+require'lib/autoload.php';
+
 
 $PostController = new PostController(); 
+$AdminPostController = new AdminPostController();
 $CommentController = new CommentController();
+$AdminCommentController = new AdminCommentController();
+
+
 
 try 
 {
     if (isset($_GET['action'])) 
     {
+        if(substr($_GET['action'], 0,5) == 'admin')
+        {
+            $sessionAdmin = new SessionAdmin;
+            
+            if($sessionAdmin->isConnected() == false)
+            {
+                header('Location: index.php?action=userConnect');
+                exit;
+            }
+
+        }
+
         if ($_GET['action'] == 'listPosts') 
         {
             $PostController->listPosts();
         }
-        elseif($_GET['action'] == 'all')
+        elseif($_GET['action'] == 'adminAll')
         {
             $PostController->listAll();
          }
@@ -23,7 +43,6 @@ try
             if (isset($_GET['id']) && $_GET['id'] > 0) 
             {
                 $PostController->post();
-                $CommentController->comments();
             }
             else 
             {
@@ -38,49 +57,60 @@ try
                 {
                     $CommentController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
                 }
-                else 
+                else
                 {
                     throw new Exception('Tous les champs ne sont pas remplis !');
                 }
-                else 
-                {
+            }
+            else 
+            {
                 throw new Exception('Aucun identifiant de billet envoyé');
-                }
             }
         }
-        elseif ($_GET['action'] == 'addPost') 
+        elseif ($_GET['action'] == 'adminAddPost') //Mettere un prefisso tipo AdminAddpost //
         {
             if(empty($_POST['title']) && empty($_POST['content']))
             {
-                $PostController->addPostAction();
+                $AdminPostController->addPostAction();
             }
         }
-        elseif($_GET['action'] == 'editPost')
+        elseif($_GET['action'] == 'adminEditPost')
         {
-                $PostController->editPostAction();  
+                $AdminPostController->editPostAction();  
         }
-        elseif($_GET['action'] == 'removePost')
+        elseif($_GET['action'] == 'adminRemovePost')
         {
-                $PostController->removePostAction();  
+                $AdminPostController->removePostAction();  
         }
-        elseif($_GET['action'] == 'reportComment')
+        elseif($_GET['action'] == 'adminReportComment')
         //if (isset($_GET['id']) && $_GET['id'] > 0) 
         {
             $CommentController->reportCommentAction();
         }
-        elseif($_GET['action'] == 'showReportedComment')
+        elseif($_GET['action'] == 'adminShowReportedComment')
         {
                 $CommentController->showReportedComment();
         }
-        elseif ($_GET['action'] == 'removeComment') 
+        elseif ($_GET['action'] == 'adminRemoveComment') 
         {
-            $CommentController->removeCommentAction();
+            $AdminCommentController->removeCommentAction();
         }
-        else 
+        elseif($_GET['action'] == 'adminUserDeconnect')//mettere il prefisso ADMIN per tutte le azioni admin
         {
-        $PostController->listPosts();
+            $adminUserController = new AdminUserController();
+            $adminUserController->signOut();
         }
+        elseif($_GET['action'] == 'userConnect')//mettere il prefisso ADMIN per tutte le azioni admin
+        {
+            $adminUserController = new AdminUserController();
+            $adminUserController->signIn();
+        }
+
     }
+    else 
+        {
+            $PostController->listPosts();
+        }
 }
 catch(Exception $e) 
 {
