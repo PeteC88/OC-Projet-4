@@ -53,22 +53,36 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('public/thème/img/home-bg.jpg')">
+    <header class="masthead" style="background-image: url('public/thème/img/writer2.jpg')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="site-heading">
-              <h1>Clean Blog</h1>
-              <span class="subheading">A Blog Theme by Start Bootstrap</span>
+            <div class="post-heading">
+              <h1>
+                <?= htmlspecialchars($post['title']) ?>
+              </h1>
+              <span class="meta">Publié le <?= $post['creation_date_fr'] ?></span>
             </div>
           </div>
         </div>
       </div>
     </header>
 
-	<?= $content ?>
-      
+    <!-- Post Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                  
+              <?= $content ?>
+         
+            </div>
+        </div>
+      </div>
+    </article>
+
+    <hr>
 
     <!-- Footer -->
     <footer>
@@ -109,10 +123,12 @@
 
     <!-- Bootstrap core JavaScript -->
     <script src="public/thème/vendor/jquery/jquery.min.js"></script>
-    <script src="public/thème/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="pubic/thème/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Custom scripts for this template -->
     <script src="public/thème/js/clean-blog.min.js"></script>
+      
+    <script src="public/js/functions.js"></script>
+  </body>
 
-</body>
 </html>
