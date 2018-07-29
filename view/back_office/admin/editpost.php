@@ -60,7 +60,7 @@
 
 <br />
 
-<form name="formulaire" id="formulaire" action="index.php?action=adminAddPost" method="post">
+<form name="formulaire" id="formulaire" action="index.php?action=adminEditPost" method="post">
     
     <input type="hidden" size='3' name="id" value="<?= $post['id'] ?>" />
     <div class="input-group mb-3">
@@ -74,11 +74,11 @@
       <div class="input-group-prepend">
         <span class="input-group-text">Texte : </span>
       </div>
-      <textarea id="texte" name="texte" rows="25" class="form-control" aria-label="Texte : "><?= $post['content']  ?></textarea>
+      <textarea rows="15" cols="100" name="content"><?= $post['content']  ?></textarea>
     </div>  
     <br />
     <div style="display: flex; justify-content: space-between">
-        <input class="btn" type="submit" value="Modifier" />   
+        <input class="btn" type="submit" name="modifier" value="Modifier" />   
         <a style="text-decoration: none" href="index.php?action=adminRemovePost&amp;id=<?= $post['id']?>" onclick="return confirm('Voulez vous vraiment supprimer ce post?')">        
         <input type="button" class="btn" value="Supprimer le post" /></a>
     

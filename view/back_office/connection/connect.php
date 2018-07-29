@@ -17,7 +17,7 @@
 
 
 <!--            <?php
-            echo $erreur;
+            echo '<p class="alert alert-danger fade in"> ciao' . $erreur . '</p>';
             ?> -->
         </div>  
     </body>
