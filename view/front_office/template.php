@@ -28,7 +28,6 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="index.html">Start Bootstrap</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -39,12 +38,6 @@
               <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="post.html">Contact</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="index.php?action=userConnect">Connexion</a>
             </li>
           </ul>
@@ -53,14 +46,14 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('public/thème/img/home-bg.jpg')">
+    <header class="masthead" style="background-image: url('public/thème/img/alaska_cover_1.jpg')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
-              <h1>Clean Blog</h1>
-              <span class="subheading">A Blog Theme by Start Bootstrap</span>
+              <h1>Billet simple pour l'Alaska</h1>
+              <span class="subheading">Un roman à episode de Jean Forteroche</span>
             </div>
           </div>
         </div>
@@ -72,9 +65,10 @@
 
     <!-- Footer -->
     <footer>
-      <div class="container">
+      <div class="container" style="border-top: solid black">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
+            <br />
             <ul class="list-inline text-center">
               <li class="list-inline-item">
                 <a href="#">
@@ -89,14 +83,6 @@
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
