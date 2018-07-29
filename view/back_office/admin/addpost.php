@@ -64,15 +64,24 @@
 
 <br />
 <form name="formulaire" id="formulaire" action="index.php?action=adminAddPost" method="post">
-        <label for="titre" >Titre : </label>
-        <input type="text" id="titre" name="titre"/>
-        <br />
-        <br/>
-        <label for="texte"> Texte : </label>
-        <textarea id="texte" name="texte" rows="25" ></textarea>
-        <div>
-            <input type="submit" />
-        </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Titre :</span>
+      </div>
+      <input type="text" id="titre" name="titre" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    </div>
+    <br />
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Texte : </span>
+      </div>
+      <textarea id="texte" name="texte" rows="25" class="form-control" aria-label="Texte : "></textarea>
+    </div>  
+    <br />
+    <div>
+        <input class="btn" type="submit" value="Pulbier" />
+    </div>
  </form>
 
 
