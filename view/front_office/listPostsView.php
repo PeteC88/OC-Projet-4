@@ -1,27 +1,32 @@
 <?php $title = 'Mon blog'; ?>
 
+<!--ob_start is called buffering or temporisation in french-->
 <?php ob_start(); ?>
-<h1>Mon super blog !</h1>
-<p>Derniers billets du blog :</p>
-<a href="index.php?action=userConnect">Connexion</a>
-<div><img alt="writer" src="http://www.lorenzomarone.net/wp-content/uploads/2014/12/scrittore-981x540.jpg"></div>
-
+<h1 style="text-align: center; font-size: 3em;">Liste des chapitres</h1>
 <?php
 foreach ($post as $data) 
 {
 ?>
-    <div class="news">
-        <h3>
-            <?= ($data['title']) ?>
-            <em>le <?= $data['creation_date_fr'] ?></em>
-        </h3>
-        
-        <p>
-            <?= nl2br(($data['content'])) ?>
+<div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-preview">
+            <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">
+              <h2 class="post-title">
+                <?= ($data['title']) ?>
+                </h2>
+              <h3 class="post-subtitle">
+                <?= substr($data['content'], 0, 200); ?>...
+              </h3> 
+            </a>
+            <p class="post-meta"> Publié le <?= $data['creation_date_fr'] ?>
             <br />
-            <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
-        </p>
+            </p>
+        <br />
+          </div>
+        </div>
     </div>
+</div>
 <?php
 }
 ?>
