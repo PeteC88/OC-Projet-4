@@ -10,19 +10,20 @@ Class SessionAdmin
 		}
 	}
 
+	//to empty the var of the session
 	function deconnect()
 	{
-		//per svuotare le variabili dalla sessione
-		//User è una chiave e serve per conservare le informazioni sull'utilizzatore
-		$_SESSION['user'] =  array(); //Non mettiamo nulla per indicare che le variabili sono vuote
+		//user is a key who mantain the informations about the user
+		$_SESSION['user'] =  array(); //There is nothing in the array to indicate that the vars are empty
 
 		session_destroy();
 	}
 
 	function connect($user)
 	{
+		//Save the datas of users in the session.
 		$_SESSION['user'] = $user;
-	} //Salviamo nella sessione i dati dell'utilizzatore
+	} 
 
 
 	function isConnected()
@@ -37,11 +38,3 @@ Class SessionAdmin
 		 return false;
 	}
 }
-
-//methode 
-//dans la session admin, fare un metodo per connettere l'utilizzatore
-
-//un metodo per deconnecter
-
-//un metodo se l'utilizzatore è già connesso
-
