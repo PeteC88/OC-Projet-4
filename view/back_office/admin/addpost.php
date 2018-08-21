@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>Admin WISIWYG</title>
+	<title>Ajoute post</title>
 	<link href="../public/css/stylesheet.css" rel="stylesheet" />
    <script src="public/tinymce/tinymce.js" language="javascript" type="text/javascript">
     </script>
@@ -55,8 +55,6 @@
 </head>
 <?php ob_start(); ?>
 <body>
-<a id="logout" href="index.php?action=adminUserDeconnect">Deconnexion</a><br />
-<em><a href="index.php?action=adminAll"> voir tous les post</a></em>
 <br />
 <br />
 
@@ -69,7 +67,7 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default">Titre :</span>
       </div>
-      <input type="text" id="titre" name="titre" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+      <input type="text" id="titre" name="titre" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="titre">
     </div>
     <br />
     <div class="input-group">
@@ -80,7 +78,7 @@
     </div>  
     <br />
     <div>
-        <input class="btn" type="submit" value="Pulbier" />
+        <input class="btn" type="submit" value="Publier" />
     </div>
  </form>
 
@@ -90,4 +88,3 @@
 </html>
 
 <?php require(ADMIN_VIEW_PATH . 'templateAddEdit.php'); ?>
-<!--requete sql qui va recuperer l'entier des chapitre et faire un for each pour parcourir mon tableau
