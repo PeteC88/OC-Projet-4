@@ -5,27 +5,22 @@ class AdminUserController
 
 	public function signIn()
 	{
-		ini_set('display_errors', 1); 
-		error_reporting(E_ALL);
-
 		$erreur = "";
-		    //connexion à la base de donnée
-
 		if(isset($_POST['submit']))
 		{
 		     $email = $_POST['email'];
 		     $password = $_POST['password'];
 		     if(!empty($email) AND !empty($password))
             {
-                    $userModel = new userModel(); 
+                    $userModel = new UserModel(); 
                     if($user = $userModel->getUser($email, $password))
                     {
                         $sessionAdmin = new SessionAdmin();
                         $sessionAdmin->connect($user);
 
-                        header("Location: index.php?action=adminAll"); //ridirezione verso il profilo della persona. ../view/listPostsView.php
+                        header("Location: index.php?action=adminAll"); 
                         
-                        exit(); //à mettre à chaque redirection
+                        exit();
 
                     }
                       else
@@ -54,6 +49,7 @@ class AdminUserController
 		$sessionAdmin->deconnect();
 
 		header("Location: index.php?action=adminUserConnect");
+		exit();
 
 	}		
 }
