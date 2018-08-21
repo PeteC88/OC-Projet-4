@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<title>Commentaires Signalés</title>
-	<link href="../public/css/stylesheet.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title>Commentaires Signalés</title>
 </head>
+        <!-- Page Header -->
+    <header class="masthead" style="background-image: url('public/thème/img/comments_2.jpg')">
+            <div class="site-heading">
+              <h1 id="comments" style="text-shadow: black 1px 1px, black -1px 1px, black -1px -1px, black 1px -1px;">Commentaires Signalés</h1>
+            </div>
+    </header>
+<?php ob_start(); ?>
 <body>
-	<h1>Page de l'Admin</h1>
-	<a id="logout" href="index.php?action=adminUserDeconnect">Deconnexion</a>
-    <br/>
-    <br/>
-    <em><a href="index.php?action=all"> voir tous les post</a></em> 
-
-<h1>Commentaires signalés !</h1>
 <?php
 while ($comment = $comments->fetch())
 {
 ?>
-    <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-    <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
-    <em><a href="index.php?action=adminRemoveComment&amp;id=<?= $comment['id']?>">Supprimer le commentaire</a></em>
+<div style="margin-left: 10px;">
+    <p>Par <strong><?= htmlspecialchars($comment['author']) ?></strong>, publié le <?= $comment['comment_date_fr'] ?></p>
+    <p style="color: red"><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+      
+    <a style="text-decoration: none" href="index.php?action=adminRemoveComment&amp;id=<?= $comment['id']?>" onclick="return confirm('Voulez vous vraiment supprimer ce commentaire?')">        
+    <input type="button" class="btn" value="Supprimer le commentaire" /></a>
+</div>
 <?php
 }
 ?>
+<?php $content = ob_get_clean(); ?>
 </body>
 </html>
 
-<!--faire une fonction get reported comment-->
+<?php require(ADMIN_VIEW_PATH . 'templateAdmin.php'); ?>
