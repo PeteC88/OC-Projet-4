@@ -3,27 +3,38 @@
 Class AdminPostController
 {
 	protected $PostModel;
-	//private $CommentModel;
 
 	public function __construct()
 	{
 		$this->PostModel = new PostModel();
 	}
 	
-    function adminPost()
+    public function adminPost()
 	{	
-    	$post = $this->PostModel->getPost($_GET['id']);
-    	$comments = $this->PostModel->getPostComments($_GET['id']);
+    	$post = $this->PostModel->getPost($_GET['id']);;
+    	
+    	if(!empty($post))
+    	{
+    		
+    		$comments = $this->PostModel->getPostComments($_GET['id']);
 
     	require(ADMIN_VIEW_PATH . 'adminPostView.php');
+    	}
+    	else
+    	{
+    		header('Location: view/front_office/404.html');
+
+    	}
+    	
 	}
     
-	function addPostAction()
+	public function addPostAction()
 		{
 			$sessionAdmin = new SessionAdmin();
 			if($sessionAdmin->isConnected() == false)
 			{
 				header('Location: index.php?action=adminUserConnect');
+				exit();
 			}
 
 		    if(empty($_POST))
@@ -34,29 +45,28 @@ Class AdminPostController
 		    {
 		        $titre = htmlspecialchars($_POST['titre']);
 		        $texte = ($_POST['texte']);
-		        //cambiare con testo inglese in $_POST['titre'] e $_POST['texte']
 
 		        $affectedLines = $this->PostModel->addPost($titre, $texte);
 
 		        if ($affectedLines === false) {
-		            //Erreur gérée. Elle sera remontée jusqu'au bloc try du routeur !
 		            throw new Exception('Impossible d\'ajouter le commentaire !');
 		        }
 		        else {
 		            header('Location: index.php?action=adminAll');
+		            exit();
 		        }
 		     }
 
 		}
 
-	function editPostAction()
+	public function editPostAction()
 	{   
-	    //affichage du formulaire prerempli
+	    //This function will display the pre-filled form.
 	    if(empty($_POST))
 	    {
-	        //creer les variables que je vais afficher dans le formulaire
+	        //get the id of the post
 	        $post = $this->PostModel->getPost($_GET['id']);
-	        //test pour verifier si l'article existe ou pas.
+	        //test to verify if the post exist.
 	        if($post)
 	        {
 	            require(ADMIN_VIEW_PATH . 'editpost.php');
@@ -77,17 +87,17 @@ Class AdminPostController
 
 	        if ($affectedLines === false) 
 	        {
-	        //Erreur gérée. Elle sera remontée jusqu'au bloc try du routeur !
-	        throw new Exception('Impossible de modifier le billet !');
+	        	throw new Exception('Impossible de modifier le billet !');
 	        }
 	        else 
 	        {
 	            header('Location: index.php?action=adminAll');
+	            exit();
 	        }
 	    }
 	}
 
-	function removePostAction()
+	public function removePostAction()
 	{
 
 	    $id = htmlspecialchars($_GET['id']);
@@ -101,6 +111,7 @@ Class AdminPostController
 	        else 
 	    {
 	        header('Location: index.php?action=adminAll');
+	        exit();
 	    }  
 	}
 }
