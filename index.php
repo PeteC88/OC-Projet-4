@@ -5,6 +5,7 @@ CONST CONNECTION_VIEW_PATH = 'view/back_office/connection/';
 CONST FRONT_OFFICE_VIEW_PATH = 'view/front_office/';
 
 require'lib/autoload.php';
+require'lib/utility.php';
 
 
 $PostController = new PostController(); 
@@ -25,7 +26,7 @@ try
             if($sessionAdmin->isConnected() == false)
             {
                 header('Location: index.php?action=userConnect');
-                exit;
+                exit();
             }
 
         }
@@ -43,6 +44,18 @@ try
             if (isset($_GET['id']) && $_GET['id'] > 0) 
             {
                 $PostController->post();
+            }
+            else 
+            {
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+      
+        }
+        elseif ($_GET['action'] == 'adminPost') 
+        {
+            if (isset($_GET['id']) && $_GET['id'] > 0) 
+            {
+                $AdminPostController->adminPost();
             }
             else 
             {
@@ -67,7 +80,7 @@ try
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
-        elseif ($_GET['action'] == 'adminAddPost') //Mettere un prefisso tipo AdminAddpost //
+        elseif ($_GET['action'] == 'adminAddPost')
         {
             if(empty($_POST['title']) && empty($_POST['content']))
             {
@@ -83,7 +96,6 @@ try
                 $AdminPostController->removePostAction();  
         }
         elseif($_GET['action'] == 'reportComment')
-        //if (isset($_GET['id']) && $_GET['id'] > 0) 
         {
             $CommentController->reportCommentAction();
         }
@@ -95,12 +107,16 @@ try
         {
             $AdminCommentController->removeCommentAction();
         }
-        elseif($_GET['action'] == 'adminUserDeconnect')//mettere il prefisso ADMIN per tutte le azioni admin
+        elseif($_GET['action'] == 'adminUserDeconnect')
         {
             $adminUserController = new AdminUserController();
             $adminUserController->signOut();
         }
-        elseif($_GET['action'] == 'userConnect')//mettere il prefisso ADMIN per tutte le azioni admin
+        elseif ($_GET['action'] == 'about')
+         {
+           $PostController->about();
+        }
+        elseif($_GET['action'] == 'userConnect')
         {
             $adminUserController = new AdminUserController();
             $adminUserController->signIn();
