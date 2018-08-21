@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin</title>
+  <title>Espace Admin Blog Jean Forteroche</title>
 </head>
 <body>
     <!-- Page Header -->
@@ -15,8 +15,7 @@
 <?php ob_start(); ?>
 
 <?php
-foreach($all as $data) //foreach($all as $data);
-//foreach bouche like while but it works only on arrays,  raccoglie tutti i dati e li dispaccia
+foreach($all as $data) 
 {
 ?>
     <div class="container">
@@ -28,27 +27,17 @@ foreach($all as $data) //foreach($all as $data);
                 <?= ($data['title']) ?>
                 </h2>
               <h3 class="post-subtitle">
-                <?= strip_tags(substr($data['content'], 0, 100), '<br> <em> <strong>' ) ?>...
-                      <!-- faire une fonction pour le strip_tags et le mettre dans toute les vues-->
-
-            <!-- function stripTags($string){
-
-                return strip_tags($data['content'], '<br><em><a><p><div><strong>')
-                
-
-                  fare un fichier utilities.php oà mettre tous les fonctions et l'inclure dans index.php
-
-                  l'appeler comme ça stripTags($data['content'])  au lieu de  strip_tags($data['content'], '<br> <em>' ecc)} -->
+                <?= strip_tags(substr($data['content'], 0, 200), '<br> <em> <strong>' ) ?>...
               </h3>
             </a>
-            <p class="post-meta"> le <?= $data['creation_date_fr'] ?>
+            <p class="post-meta"> Publié le <?= $data['creation_date_fr'] ?>
             <br />
   
             </p>
               
-            <a style="text-decoration: none" href="index.php?action=adminPost&amp;id=<?= $data['id'] ?>"><input type="button" class="btn" value="Voir le post" /></a>
-            <a style="text-decoration: none" href="index.php?action=adminEditPost&amp;id=<?= $data['id'] ?>"><input type="button" class="btn" value="Modifier le post" /></a>
-            <a style="text-decoration: none" href="index.php?action=adminRemovePost&amp;id=<?= $data['id']?>" onclick="return confirm('Voulez vous vraiment supprimer ce post?')"><input type="button" class="btn" value="Supprimer le post" /></a>
+            <a style="text-decoration: none" href="index.php?action=adminPost&amp;id=<?= $data['id'] ?>"><input type="button" class="btn" value="Voir" /></a>
+            <a style="text-decoration: none" href="index.php?action=adminEditPost&amp;id=<?= $data['id'] ?>"><input type="button" class="btn" value="Modifier" /></a>
+            <a style="text-decoration: none" href="index.php?action=adminRemovePost&amp;id=<?= $data['id']?>" onclick="return confirm('Voulez vous vraiment supprimer ce post?')"><input type="button" class="btn" value="Supprimer" /></a>
         <br />
         <br />
         <br />
@@ -65,5 +54,5 @@ foreach($all as $data) //foreach($all as $data);
 <?php require(ADMIN_VIEW_PATH . 'templateAdmin.php'); ?>
 
 
-	</body>\
+  </body>\
 </html>
