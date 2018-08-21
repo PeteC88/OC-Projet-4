@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Start Bootstrap Theme</title>
+    <title>Billet simple pour l'Alaska</title>
 
     <!-- Bootstrap core CSS -->
     <link href="public/thème/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +28,6 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="index.html">Start Bootstrap</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -39,10 +38,7 @@
               <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="post.html">Contact</a>
+              <a class="nav-link" href="index.php?action=about">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="index.php?action=userConnect">Connexion</a>
@@ -53,7 +49,7 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('public/thème/img/writer2.jpg')">
+    <header class="masthead" style="background-image: url('public/images/alaska_cover.jpg')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
@@ -62,7 +58,6 @@
               <h1>
                 <?= htmlspecialchars($post['title']) ?>
               </h1>
-              <span class="meta">Publié le <?= $post['creation_date_fr'] ?></span>
             </div>
           </div>
         </div>
@@ -106,16 +101,8 @@
                   </span>
                 </a>
               </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
             </ul>
-            <p class="copyright text-muted">Copyright &copy; Your Website 2018</p>
+            <p class="copyright text-muted">Copyright &copy; Jean Forteroche 2018</p>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Start Bootstrap Theme</title>
+    <title>Billet simple pour l'Alaska</title>
 
     <!-- Bootstrap core CSS -->
     <link href="public/thème/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,6 +38,9 @@
               <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="index.php?action=about">About</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="index.php?action=userConnect">Connexion</a>
             </li>
           </ul>
@@ -53,14 +56,14 @@
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
               <h1>Billet simple pour l'Alaska</h1>
-              <span class="subheading">Un roman à episode de Jean Forteroche</span>
+              <span class="subheading">Un roman à épisodes de Jean Forteroche</span>
             </div>
           </div>
         </div>
       </div>
     </header>
 
-	<?= $content ?>
+  <?= $content ?>
       
 
     <!-- Footer -->
@@ -87,7 +90,7 @@
                 </a>
               </li>
             </ul>
-            <p class="copyright text-muted">Copyright &copy; Your Website 2018</p>
+            <p class="copyright text-muted">Copyright &copy; Jean Forteroche 2018</p>
           </div>
         </div>
       </div>
